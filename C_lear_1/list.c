@@ -120,11 +120,8 @@ List CreatHeadNode(void)
 		exit(1);
 		// return L;
 	}
-<<<<<<< HEAD
+
 	//	L->element = 0;
-=======
-//	L->element = 0;
->>>>>>> 03cebe88ab4cf644c66a0e9eb513a780ea62d80c
 	L->Next = NULL;
 
 	return L;
@@ -152,11 +149,7 @@ void InsertForLast(int x, List L)
 	if (temp == NULL)
 	{
 		printf_s("error!\n"); // 分配内存失败
-<<<<<<< HEAD
 		return;
-=======
-		return ;
->>>>>>> 03cebe88ab4cf644c66a0e9eb513a780ea62d80c
 	}
 
 	temp->element = x;
@@ -192,7 +185,6 @@ void PrintfForList(List L)
 		printf_s("node element is %d\n", temp->element);
 		temp = temp->Next;
 	}
-<<<<<<< HEAD
 	free(temp);
 }
 
@@ -208,27 +200,11 @@ int FindKthForList(List L, int pos)
 
 	temp = L;
 	for (int i = 0; i < pos; i++)
-=======
-}
-
-void PrintKthForList(List L, int x)
-{
-	List temp;
-	if (L->Next == NULL || x <= 0) // 如果是空列表或者找的位置不合理则直接返回
-	{
-		printf_s("input is error!\n");
-		return;
-	}
-
-	temp = L;
-	for (int i = 0; i < x; i++)
->>>>>>> 03cebe88ab4cf644c66a0e9eb513a780ea62d80c
 	{
 		temp = temp->Next;
 		if (temp == NULL)
 		{
 			printf_s("no x element\n"); // 没有x个元素
-<<<<<<< HEAD
 			return -2;
 		}
 	}
@@ -282,13 +258,6 @@ void DeleteEleForList(List L, int x)
 			p = p->Next;
 		}
 	}
-=======
-			return ;
-		}
-	}
-	
-	printf_s("element is = %d\n", temp->element);
->>>>>>> 03cebe88ab4cf644c66a0e9eb513a780ea62d80c
 }
 
 int main(void)
@@ -314,25 +283,17 @@ int main(void)
 		printf_s("not find!\n");
 	}
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 03cebe88ab4cf644c66a0e9eb513a780ea62d80c
 	// printf_s("x element numble is = %d\n", p->element);
 	// printf_s("x element numble is = %d\n", p);
 
 	PrintfForList(Node);
 
-<<<<<<< HEAD
 	FindKthForList(Node, 2); // 找到第x个元素
 
 	DeleteKthForList(Node, 2);
 	DeleteEleForList(Node, 50);
 
 	FindKthForList(Node, 2); // 找到第x个元素
-=======
-	PrintKthForList(Node, -1); // 找到第x个元素
->>>>>>> 03cebe88ab4cf644c66a0e9eb513a780ea62d80c
 
 	return true;
 }
