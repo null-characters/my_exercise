@@ -10,9 +10,14 @@ List CreatHeadNode(void); // 创建头结点
 void InsertForHead(int x, List L); // 在头结点插入数据
 void InsertForLast(int x, List L); // 在头结点插入数据
 void PrintfForList(List L); // 在头结点插入数据
+<<<<<<< HEAD
 int FindKthForList(List L, int pos); // 打印第pos个元素
 void DeleteKthForList(List L, int pos); // 删除第pos个元素
 void DeleteEleForList(List L, int x); // 删除值是x的元素
+=======
+void PrintKthForList(List L, int x); // 打印第x个元素
+
+>>>>>>> 03cebe88ab4cf644c66a0e9eb513a780ea62d80c
 //
 List MakeEmpty(List L);                 // 清空链表
 bool IsEmpty(List L);                    // 当前列表是否为空
