@@ -20,34 +20,64 @@ bool IsEmpty(List L)
 // 	return P->Next == NULL;
 // }
 
-// int Find(int x, List L)
-// {
-// 	Position P;
+// 查找值位x的元素的数组下标
+int Find(int x, List L)
+{
+	if (L->length == 0)
+	{ // 空表
+		return -1;
+	}
+	for (int i = 0; i < L->length; i++)
+	{
+		if (L->element[i] == x)
+		{
+			return i;
+		}
+	}
+	return -1;	
+}
 
-// 	P = L->Next; // 这是一个带表头的链表，所以直接将表头后的地址赋值给P
-// 	while (P != NULL && P->element != x)
-// 	{ // 如果链表不是空并且元素不等于要找的元素，则将位置指向下一个结点
-// 		P = P->Next;
-// 	}
+// 找到第pos位置上的元素
+int FindKthForList(List L, int pos)
+{
+	if (pos > L->length || pos < 0)
+	{
+		printf_s("error enter! please enter numble to 1 - %d\n", L->length);
+		exit(1);
+	}
 
-// 	return P; // 要么找到元素，P指向找到元素时的位置；要么没找到P指向NULL
-// }
+	return L->element[pos - 1];
+}
 
-// void Delete(int x, List L)
-// {
-// 	Position P, Temp;
-// 	if (L == NULL)
-// 		return;
-// 	// 删除操作首先需要找到需要删除元素的前一个地址
-// 	P = FindPrevious(x, L);
-// 	if (!IsLast(P, L))		  // 此时P已经是要删除元素的前一个地址了，\
-//                                 所以如果P是最后一个元素，则表明并没有找到要删除的元素
-// 	{						  // 然后判断要删除的元素是不是最后一个
-// 		Temp = P->Next;		  // 将P的下一个元素（要删除的元素）地址赋值给临时量
-// 		P->Next = Temp->Next; // 将下下个元素的地址赋值到下个元素的地方（跳过下个元素的地址）
-// 		free(Temp);
-// 	}
-// }
+// 删除值为x的元素
+void Delete(int x, List L)
+{
+	int pos;
+	if ((pos = Find(x, L)) == -1)
+	{
+		printf_s("not find x!\n");
+	}
+	for (int i = pos; i < L->length; i++)
+	{
+		L->element[i] = L->element[i + 1];
+	}
+	L->length--;
+}
+// 删除第pos位置的元素
+void DeleteKthForList(List L, int pos)
+{
+	if (pos > L->length || pos <= 0)
+	{
+		printf_s("not find x!\n");
+		return ;
+	}
+	
+	for (int i = pos - 1; i < L->length; i++)
+	{
+		L->element[i] = L->element[i + 1];
+	}
+	L->length--;
+}
 
 // int FindPrevious(int x, List L)
 // {
@@ -60,18 +90,6 @@ bool IsEmpty(List L)
 // 		P = P->Next;
 // 	}
 // 	return P;
-
-// 	/*
-// 		Position P, Q;
-// 		P = L;                               // P初始指向表头或者哑结点
-// 		Q = L->Next;                         // Q初始指向第一个真正存储数据的节点
-// 		while (Q != NULL && Q->element != x) // 循环判断Q是否为空或者是否等于x
-// 		{
-// 			P = Q;       // P指向Q
-// 			Q = Q->Next; // Q指向下一个节点
-// 		}
-// 		return P; // 返回P，如果链表为空或者元素x不存在，则P指向最后一个节点；如果元素x存在，则P指向元素x的前一个节点
-// 	*/
 // }
 
 // void Insert(int x, List L, Position P)
@@ -170,33 +188,6 @@ void PrintfForList(List L)
 	printf_s("\n");
 }
 
-// int FindKthForList(List L, int pos)
-// {
-// 	List temp;
-// 	int result;									  // 返回值
-// 	if (L == NULL || L->Next == NULL || pos <= 0) // 如果是空列表或者找的位置不合理则直接返回
-// 	{
-// 		printf_s("input is error!\n");
-// 		return -1;
-// 	}
-
-// 	temp = L;
-// 	for (int i = 0; i < pos; i++)
-// 	{
-// 		temp = temp->Next;
-// 		if (temp == NULL)
-// 		{
-// 			printf_s("no x element\n"); // 没有x个元素
-// 			return -2;
-// 		}
-// 	}
-
-// 	result = temp->element;
-// 	printf_s("element is = %d\n", result);
-// 	//	free(temp);
-// 	return result;
-// }
-
 // void DeleteKthForList(List L, int pos)
 // {
 // 	List temp, p;
@@ -255,21 +246,18 @@ int main(void)
 	InsertForLast(60, Node);
 	InsertForLast(80, Node);
 
-	// p = Find(50, Node);
-	// if (p != NULL)
-	// {
-	// 	printf_s("find node element = %d\n", p);
-	// }
-	// else
-	// {
-	// 	printf_s("not find!\n");
-	// }
+	printf_s("Find date 50 in : %d\n", Find(50, Node));
+	printf_s("Find date 60 in : %d\n", Find(60, Node));
 
-	// printf_s("x element numble is = %d\n", p->element);
-	// printf_s("x element numble is = %d\n", p);
+	printf_s("Find pos 2 date is : %d\n", FindKthForList(Node, 2));
+//	printf_s("Find pos -1 date is : %d\n", FindKthForList(Node, -1));
 
 	PrintfForList(Node);
 
+//	Delete(50, Node);
+	DeleteKthForList(Node, 3);
+
+	PrintfForList(Node);
 	// FindKthForList(Node, 2); // 找到第x个元素
 
 	// DeleteKthForList(Node, 2);
