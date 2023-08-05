@@ -9,6 +9,7 @@ typedef PtrtoNode List;
 List CreatHeadNode(void); // 创建头结点
 void InsertForHead(int x, List L); // 在头结点插入数据
 void InsertForLast(int x, List L); // 在头结点插入数据
+void InsertForPos(int x, int pos, List L); // 在pos位置插入数据
 void PrintfForList(List L); // 在头结点插入数据
 int FindKthForList(List L, int pos); // 打印第pos个元素
 void DeleteKthForList(List L, int pos); // 删除第pos个元素

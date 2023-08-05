@@ -3,28 +3,36 @@
 #include <stdbool.h>
 #include "test.h"
 
-
-struct _drv_ drv;
-
-/// @brief 测试结构体内变量是随机值还是0
-/// @param  
-/// @return 全局变量的值默认是0，分配在数据段；局部变量是随机的，分配在栈区
 int main(void)
 {
-	struct _drv_ d;
+    // 定义一个数组，元素个数为50
+    float arr[50];
 
-	printf_s("%d\n", drv.i);
-	printf_s("%.8f\n", drv.f);
-	printf_s("%.16lf\n", drv.d);
-	printf_s("%d\n", drv.c);
-	printf_s("%d\n", drv.s.j);
+    // 定义一个变量，用于存储数组元素的值
+    float value = 0.0054;
 
-	printf_s("%d\n", d.i);
-	printf_s("%.8f\n", d.f);
-	printf_s("%.16lf\n", d.d);
-	printf_s("%d\n", d.c);
-	printf_s("%d\n", d.s.j);
-	return 1;
+    // 定义一个变量，用于存储数组元素之间的差值
+    float diff = (0.0074 - 0.0054) / 49;
+
+    // 用循环给数组元素赋值
+    for (int i = 0; i < 50; i++)
+    {
+        // 将value赋值给当前元素
+        arr[i] = value;
+
+        // 将value加上diff，得到下一个元素的值
+        value = value + diff;
+    }
+
+	// 用循环打印数组元素
+	for (int i = 0; i < 50; i++)
+	{
+		printf("%.5f,  ", arr[i]);
+		if (i % 10 == 0 )
+		{
+			printf("\n");
+		}
+	}
+
+	return 0;
 }
-
-

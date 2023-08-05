@@ -63,6 +63,7 @@ void Delete(int x, List L)
 	}
 	L->length--;
 }
+
 // 删除第pos位置的元素
 void DeleteKthForList(List L, int pos)
 {
@@ -166,6 +167,25 @@ void InsertForLast(int x, List L)
 	L->length++;
 }
 
+// 在pos位置插入数据
+void InsertForPos(int x, int pos, List L)
+{
+	int i;
+	if (L->length >= SIZE || pos >= L->length)
+	{ // 判断表是不是满了
+		printf_s("it is full!\n");
+		return ;
+	}
+
+	for (i = L->length; i > pos; i--)
+	{
+		L->element[i] = L->element[i-1];
+	}
+	L->element[pos] = x;
+	L->length++;	
+
+}
+
 // 这种做法直接操作修改了L，将L的指针指向链表的尾结点，不建议使用这种方法
 // void PrintfForList(List L)
 // {
@@ -246,10 +266,12 @@ int main(void)
 	InsertForLast(60, Node);
 	InsertForLast(80, Node);
 
-	printf_s("Find date 50 in : %d\n", Find(50, Node));
-	printf_s("Find date 60 in : %d\n", Find(60, Node));
+	InsertForPos(40, 2, Node);
 
-	printf_s("Find pos 2 date is : %d\n", FindKthForList(Node, 2));
+	// printf_s("Find date 50 in : %d\n", Find(50, Node));
+	// printf_s("Find date 60 in : %d\n", Find(60, Node));
+
+	// printf_s("Find pos 2 date is : %d\n", FindKthForList(Node, 2));
 //	printf_s("Find pos -1 date is : %d\n", FindKthForList(Node, -1));
 
 	PrintfForList(Node);
