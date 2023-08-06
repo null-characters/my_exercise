@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include "polynomial.h"
 
-#define _USE_ARR_SAVE_POLY_
+// #define _USE_ARR_SAVE_POLY_
 #ifdef _USE_ARR_SAVE_POLY_
 
 #define MaxDeoree 100
@@ -54,6 +54,42 @@ void MultPolynomial(const polynomial P1, const polynomial P2, polynomial mult)
 		printf_s("%d = %d\t", z, mult->coefarr[z]);
 	}
 }
+
+#else
+// 链表形式
+
+// 定义链表多项式的三种方式 
+/////////////////////////////////////////////
+// 第一种方式不好理解
+struct polynomial;
+typedef struct polynomial *PtrNode;
+typedef struct polynomial
+{
+	int coefarr;  // 系数
+	int exponnet; // 指数
+	PtrNode Next;
+} PolyNode; // 结构体类型的名字
+///////////////////////////////////////////////
+// 第二种方式struct Node是未完全定义的类型，只能用来声明指针变量
+typedef struct Node *PtrNode;
+struct Node
+{
+	int coefarr;  // 系数
+	int exponnet; // 指数
+	PtrNode Next;
+};
+typedef PtrNode poly;
+///////////////////////////////////////////////
+// 第三种方式有更好可读性和扩展性，建议第三种
+typedef struct polynomial
+{
+	int coefarr; // 系数 
+	int exponnet; // 指数 
+	PtrNode Next; 
+} PolyNode; // 结构体类型的名字
+typedef PolyNode *PtrNode; // 指针类型的名字
+///////////////////////////////////////////////////
+
 #endif
 
 int main(void)
