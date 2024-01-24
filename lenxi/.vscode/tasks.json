@@ -1,0 +1,28 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "task g++",
+			"command": "D:/tools/mingw64/bin/gcc.exe",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-g",
+				"${file}",
+				"-c",
+				"${fileDirname}\\${fileBasenameNoExtension}.exe",
+				// "-c",
+				// "-save-temps",
+				""
+			],
+			"options": {
+				"cwd": "D:/tools/mingw64/bin"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build",
+			"detail": "编译器: D:/tools/mingw64/bin/gcc.exe"
+		}
+	]
+}
