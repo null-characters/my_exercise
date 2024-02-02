@@ -9,7 +9,14 @@ void swap(int* a, int* b)
     *a = *a ^ *b; // a = a ^ b, b = b;
     *b = *a ^ *b; // b = a ^ b ^ b = a ; a = a ^ b;
     *a = *a ^ *b; // a = a ^ b ^ a = b;
-    printf_s("a=%d, b=%d\n", a, b);
+}
+
+void swap_temp(int* a, int* b)
+{
+    int c;
+    c = *a;
+    *a = *b;
+    *b = c;
 }
 
 void main(void)
@@ -21,7 +28,8 @@ void main(void)
     a = 15;
     b = 23;
     printf_s("a=%d, b=%d\n", a, b);
-    swap(pt_a, pt_b);
+    // swap(pt_a, pt_b);
+    swap_temp(pt_a, pt_b);
     printf_s("a=%d, b=%d\n", a, b);
 
     // printf_s("hello, ");
