@@ -3,7 +3,9 @@
 #include <string.h>
 #include <time.h>
 
-// 本文档为模板文档. 如需创建新的文件,以此文档做为模板
+// 范围内求最大值
+
+// 求中点的方法 : mid = L + ((R - L) >> 1); // 已知R比L大
 
 // 宏定义
 #define ARR_LEN_DEF 7
@@ -65,9 +67,6 @@ void func2(void)
 
 int main(void)
 {
-    struct timeval start, end;        // 定义两个变量，用来记录开始和结束的时间
-    mingw_gettimeofday(&start, NULL); // 记录程序开始的时间
-
     // 现在用选择排序的方法来对数组进行排序
     int arr_rand[ARR_LEN_DEF];
     int arr_rand_cpy[ARR_LEN_DEF];
@@ -89,10 +88,6 @@ int main(void)
     {
         printf_s("It's right!");
     }
-
-    mingw_gettimeofday(&end, NULL);                                                    // 记录程序结束的时间
-    long time = (end.tv_sec - start.tv_sec) * 1000000 + (end.tv_usec - start.tv_usec); // 计算程序的运行时间
-    printf("\n程序运行了%ld微秒\n", time); // 输出结果
 
     printf_s("\n");
 }
